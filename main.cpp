@@ -22,7 +22,7 @@ char* getCString(std::string str){
 void writeSysInfoToConsole(SysInfo sys, WINDOW* sys_win){
     sys.setAttributes();
 
-    mvwprintw(sys_win,2,2,getCString(( "OS: " + sys.getOSName())));
+    mvwprintw(sys_win,2,2,getCString(( "OS: " + sys.getOsName())));
     mvwprintw(sys_win,3,2,getCString(( "Kernel version: " + sys.getKernelVersion())));
     mvwprintw(sys_win,4,2,getCString( "CPU: "));
     wattron(sys_win,COLOR_PAIR(1));
@@ -93,6 +93,7 @@ void printMain(SysInfo sys,ProcessContainer procs){
     }
 	endwin();
 }
+
 int main( int   argc, char *argv[] )
 {
  //Object which contains list of current processes, Container for Process Class

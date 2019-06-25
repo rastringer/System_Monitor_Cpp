@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "ProcessParser.h"
+
 class SysInfo {
 private:
     std::vector<std::string> lastCpuStats;
@@ -11,7 +12,7 @@ private:
     std::vector<std::vector<std::string>>currentCpuCoresStats;
     std::string cpuPercent;
     float memPercent;
-    std::string OSname;
+    std::string Osname;
     std::string kernelVer;
     long upTime;
     int totalProc;
@@ -28,7 +29,7 @@ public:
         this->getOtherCores(ProcessParser::getNumberOfCores());
         this->setLastCpuMeasures();
         this->setAttributes();
-        this-> OSname = ProcessParser::getOSName();
+        this-> Osname = ProcessParser::getOsName();
         this-> kernelVer = ProcessParser::getSysKernelVersion();
     }
     void setAttributes();
@@ -39,7 +40,7 @@ public:
     std::string getTotalProc()const;
     std::string getRunningProc()const;
     std::string getKernelVersion()const;
-    std::string getOSName()const;
+    std::string getOsName()const;
     std::string getCpuPercent()const;
     void getOtherCores(int _size);
     void setCpuCoresStats();
@@ -67,7 +68,7 @@ void SysInfo::setCpuCoresStats(){
     }
     for(int i=0;i<this->currentCpuCoresStats.size();i++){
     // after acquirement of data we are calculating every core percentage of usage
-        this->coresStats[i] = ProcessParser::PrintCpuStats(this->lastCpuCoresStats[i],this->currentCpuCoresStats[i]);
+        this->coresStats[i] = ProcessParser::printCpuStats(this->lastCpuCoresStats[i],this->currentCpuCoresStats[i]);
     }
     this->lastCpuCoresStats = this->currentCpuCoresStats;
 }
@@ -79,7 +80,7 @@ void SysInfo::setAttributes(){
     this-> runningProc = ProcessParser::getNumberOfRunningProcesses();
     this-> threads = ProcessParser::getTotalThreads();
     this->currentCpuStats = ProcessParser::getSysCpuPercent();
-    this->cpuPercent = ProcessParser::PrintCpuStats(this->lastCpuStats,this->currentCpuStats);
+    this->cpuPercent = ProcessParser::printCpuStats(this->lastCpuStats,this->currentCpuStats);
     this->lastCpuStats = this->currentCpuStats;
     this->setCpuCoresStats();
 
@@ -121,6 +122,6 @@ std::string SysInfo::getRunningProc()const {
 std::string SysInfo::getThreads()const {
     return to_string(this->threads);
 }
-std::string SysInfo::getOSName()const {
-    return this->OSname;
+std::string SysInfo::getOsName()const {
+    return this->Osname;
 }
