@@ -1,5 +1,7 @@
 # System_Monitor_Cpp
 
+<img src="example1_system_monitor.PNG" width="500" height="500" />
+
 This program monitors Linux system processes and resource usage, similar to htop on Linux.
 
 ## To setup and compile on Ubuntu:
